@@ -1,5 +1,6 @@
 #include "Reverser.h"
 #include <cmath>
+#include <iostream>
 using namespace std;
 
 int Reverser::reverseDigit(int value){
@@ -10,11 +11,10 @@ int Reverser::reverseDigit(int value){
         return value;
     }
     else{
-        string val = to_string(value);
-        int digit = val.at(val.size()-1) * pow(10,val.size()-1);
-        val.pop_back();
-        int new_dig = stoi(val);
-        return digit + reverseDigit(new_dig);
+        int last_digit = value % 10;
+        int remain_digit = trunc(value/10);
+        int n_power = trunc(log10(value));
+        return last_digit * pow(10,n_power) + reverseDigit(remain_digit);
     }
 }
 
